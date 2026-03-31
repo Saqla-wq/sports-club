@@ -1,0 +1,183 @@
+:root {
+    --bg-start: #f8f4ea;
+    --bg-end: #dceee8;
+    --panel: rgba(255, 255, 255, 0.9);
+    --panel-border: rgba(28, 69, 62, 0.12);
+    --text-main: #17322c;
+    --text-soft: #4c675f;
+    --accent: #0d8b6f;
+    --accent-dark: #0a6c57;
+    --danger: #b64545;
+    --success: #17795f;
+    --shadow: 0 24px 60px rgba(16, 53, 47, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at top left, rgba(13, 139, 111, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(234, 129, 58, 0.18), transparent 24%),
+        linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+}
+
+.form-card,
+.message-card {
+    width: min(100%, 760px);
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.form-card {
+    padding: 36px;
+}
+
+.hero-copy {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+}
+
+.subtitle,
+.message-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+}
+
+.registration-form {
+    display: grid;
+    gap: 18px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(23, 50, 44, 0.16);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(13, 139, 111, 0.14);
+    transform: translateY(-1px);
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.primary-btn {
+    margin-top: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    box-shadow: 0 14px 30px rgba(13, 139, 111, 0.25);
+}
+
+.secondary-btn {
+    background: #ffffff;
+    color: var(--text-main);
+    border: 1px solid rgba(23, 50, 44, 0.1);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.message-card {
+    max-width: 560px;
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.success-card {
+    border-top: 6px solid var(--success);
+}
+
+.error-card {
+    border-top: 6px solid var(--danger);
+}
+
+.message-text {
+    margin: 10px 0 28px;
+}
+
+@media (max-width: 640px) {
+    .form-card,
+    .message-card {
+        border-radius: 18px;
+    }
+
+    .form-card {
+        padding: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

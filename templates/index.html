@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Registration Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page-shell">
+        <section class="form-card">
+            <div class="hero-copy">
+                <p class="eyebrow">Sports Club Registration</p>
+                <h1>Join the tournament lineup</h1>
+                <p class="subtitle">Fill in your details to register for your favorite sport and reserve your spot.</p>
+            </div>
+
+            <form action="/register" method="POST" class="registration-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact</label>
+                    <input id="contact" type="text" name="contact" placeholder="Enter your contact number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input id="address" type="text" name="address" placeholder="Enter your address" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input id="age" type="number" name="age" placeholder="Enter your age" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sport">Sport</label>
+                        <select id="sport" name="sport" required>
+                            {% for sport in sports %}
+                            <option value="{{ sport }}">{{ sport }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-btn">Submit Registration</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
