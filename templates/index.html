@@ -15,38 +15,64 @@
                 <p class="subtitle">Fill in your details to register for your favorite sport and reserve your spot.</p>
             </div>
 
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="alert-stack" role="alert" aria-live="polite">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="highlights" aria-label="Club highlights">
+                <div class="highlight-item">
+                    <strong>5 Sports</strong>
+                    <span>Choose the event that fits you best.</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>Fast Check-In</strong>
+                    <span>Your registration details are saved instantly.</span>
+                </div>
+                <div class="highlight-item">
+                    <strong>Clear Validation</strong>
+                    <span>Helpful errors guide users before submission.</span>
+                </div>
+            </div>
+
             <form action="/register" method="POST" class="registration-form">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input id="name" type="text" name="name" placeholder="Enter your name" required>
+                    <input id="name" type="text" name="name" placeholder="Enter your name" value="{{ form_data.get('name', '') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" name="email" placeholder="Enter your email" required>
+                    <input id="email" type="email" name="email" placeholder="Enter your email" value="{{ form_data.get('email', '') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="contact">Contact</label>
-                    <input id="contact" type="text" name="contact" placeholder="Enter your contact number" required>
+                    <input id="contact" type="text" name="contact" placeholder="Enter your contact number" value="{{ form_data.get('contact', '') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input id="address" type="text" name="address" placeholder="Enter your address" required>
+                    <input id="address" type="text" name="address" placeholder="Enter your address" value="{{ form_data.get('address', '') }}" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input id="age" type="number" name="age" placeholder="Enter your age" min="1" required>
+                        <input id="age" type="number" name="age" placeholder="Enter your age" min="5" max="100" value="{{ form_data.get('age', '') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="sport">Sport</label>
                         <select id="sport" name="sport" required>
+                            <option value="">Select a sport</option>
                             {% for sport in sports %}
-                            <option value="{{ sport }}">{{ sport }}</option>
+                            <option value="{{ sport }}" {% if form_data.get('sport') == sport %}selected{% endif %}>{{ sport }}</option>
                             {% endfor %}
                         </select>
                     </div>
